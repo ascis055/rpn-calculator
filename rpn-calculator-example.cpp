@@ -48,7 +48,8 @@ stack<uint16_t> calc_stack;
  * Students should create or add any functions or classes they may need.
  */
 shared_ptr<uint16_t> rpn_calc(command const cmd, uint16_t const value = 0) {
-    uint16_t a, b;
+    uint16_t a, b, ab, bb, c, s;
+    unsigned int i;
 
     switch (cmd) {
         case cmd_enter:
@@ -105,6 +106,26 @@ shared_ptr<uint16_t> rpn_calc(command const cmd, uint16_t const value = 0) {
                 return nullptr;
             break;
         case cmd_add:
+            if (calc_stack.size() >= 2) {
+                a = calc_stack.top();
+                calc_stack.pop();
+                b = calc_stack.top();
+                calc_stack.pop();
+                for (i = 0, c = 0, s = 0; i < width; i++) {
+                    ab = (a >> i) & 1;
+                    bb = (b >> i) & 1;
+                    s |= (ab ^ bb ^ c) << i;
+                    c = (ab & bb) | (ab & c) | (bb & c);
+                }
+                if (c == 0)
+                    calc_stack.push(s);
+                else {
+                    calc_stack.push(b);
+                    calc_stack.push(a);
+                    return nullptr;
+                }
+            } else
+                return nullptr;
             break;
         default:
             return nullptr;
