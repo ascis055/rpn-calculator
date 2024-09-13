@@ -10,6 +10,7 @@
 #include <string>
 #include <unordered_map>
 #include <vector>
+#include <stack>
 
 using namespace std;
 
@@ -38,6 +39,8 @@ enum command : uint16_t {
 vector<string> command_name = {"cmd_enter",       "cmd_clear", "cmd_pop", "cmd_top", "cmd_left_shift",
                                "cmd_right_shift", "cmd_or",    "cmd_and", "cmd_add"};
 uint8_t const width = 16U;
+
+stack<uint16_t> calc_stack;
 
 /*
  * *** STUDENTS SHOULD WRITE CODE FOR THIS FUNCTION ***
