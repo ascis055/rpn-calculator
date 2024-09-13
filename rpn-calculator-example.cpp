@@ -48,10 +48,34 @@ stack<uint16_t> calc_stack;
  * Students should create or add any functions or classes they may need.
  */
 shared_ptr<uint16_t> rpn_calc(command const cmd, uint16_t const value = 0) {
-    // this is example code which returns a (smart shared) pointer to 16-bit value
-    uint16_t val = 0b1001100100000011;
-    shared_ptr<uint16_t> result = make_shared<uint16_t>(val);
-    return result;
+
+    switch (cmd) {
+        case cmd_enter:
+            break;
+        case cmd_clear:
+            break;
+        case cmd_pop:
+            break;
+        case cmd_top:
+            break;
+        case cmd_left_shift:
+            break;
+        case cmd_right_shift:
+            break;
+        case cmd_or:
+            break;
+        case cmd_and:
+            break;
+        case cmd_add:
+            break;
+        default:
+            return nullptr;
+    }
+
+    if (calc_stack.size())
+        return make_shared<uint16_t>(calc_stack.top());
+    else
+        return nullptr;
 }
 
 /*
