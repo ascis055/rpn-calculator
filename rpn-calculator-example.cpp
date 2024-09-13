@@ -51,10 +51,15 @@ shared_ptr<uint16_t> rpn_calc(command const cmd, uint16_t const value = 0) {
 
     switch (cmd) {
         case cmd_enter:
+            calc_stack.push(value);
             break;
         case cmd_clear:
+            while (calc_stack.size())
+                calc_stack.pop();
             break;
         case cmd_pop:
+            if (calc_stack.size())
+                calc_stack.pop();
             break;
         case cmd_top:
             break;
